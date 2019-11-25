@@ -1,6 +1,5 @@
 import React from 'react';
 import AutoScalingText from './AutoScalingText';
-// import romantoArabic from './RomanToArabic'
 import arabicToRoman from './ArabicToRoman';
 
 class CalculatorDisplay extends React.Component {

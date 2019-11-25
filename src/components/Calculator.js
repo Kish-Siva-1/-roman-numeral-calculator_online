@@ -137,10 +137,6 @@ class Calculator extends React.Component {
     document.addEventListener('keydown', this.handleKeyDown)
   }
 
-  UNSAFE_componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
-  }
-
   render() {
     const { displayValue } = this.state
 
