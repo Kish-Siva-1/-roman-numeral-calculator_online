@@ -27,7 +27,7 @@ class AutoScalingText extends React.Component {
 
   render() {
     const { scale } = this.state
-    debugger; 
+
     return (
       <div
         className="auto-scaling-text"

@@ -127,7 +127,6 @@ button:active {
 }
 .calculator .operator-keys .calculator-key {
   color: white;
-  /* width: 80px; */
   height: 80px;
   border-right: 0;
   font-size: 3em;

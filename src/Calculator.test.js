@@ -111,7 +111,7 @@ describe("Calculator", () => {
         });
 
 
-        it('values can not be larger than the roman numeral equivalent of 3999', () => {
+        it('values can not be larger than the roman numeral equivalent of 3999 (MMMCMXCIX)', () => {
 
             window.alert = jest.fn();
             

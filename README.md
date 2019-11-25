@@ -15,11 +15,12 @@ Tested with:
 ## Features
 
 * Users can use use their mouse to click buttons to input roman numerals into the calculator
-* Clicking the equal ('=') sign will provide the results of the calculation
 * The display and input are in roman numerals
+* The user can enter roman numerals using their keyboard
 * The calculator only uses I, V, X, L, C, D & M
-* The largest number possible using this calculator is 3999 and the smallest is 1
+* The calculator performs calculations on numbers between 1 and 3999
 * The calculator doesn't permit negative numbers
+* The calculator performs addition, subtraction and multiplication
 
 ## Installation
 
@@ -40,6 +41,10 @@ Then install the relevant dependencies with:
 Finally run the program by using:
 
 * `npm start` (for JS)
+
+Run tests by using:
+
+* `npm test` (for JS)
 
 ## License
 
