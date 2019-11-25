@@ -32,7 +32,7 @@ Then install the relevant dependencies with:
 
 * `npm install` (for JS)
 
-Finally run both by using: 
+Finally run the program by using: 
 
 * `npm start` (for JS)
 
