@@ -5,10 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// const store = createStore(rootReducer, applyMiddleware(thunk));
-
 ReactDOM.render(
-<App />,
+    <App />,
 document.getElementById('app'));
 
 // If you want your app to work offline and load faster, you can change

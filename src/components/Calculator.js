@@ -12,7 +12,7 @@ class Calculator extends React.Component {
     operator: null,
     waitingForOperand: false
   };
-  
+
   clearAll() {
     this.setState({
       value: null,
@@ -27,28 +27,19 @@ class Calculator extends React.Component {
       displayValue: ''
     })
   }
-  
+
   clearLastChar() {
     const { displayValue } = this.state
-    
+
     this.setState({
       displayValue: displayValue.substring(0, displayValue.length - 1) || ''
     })
   }
-  
-  toggleSign() {
-    const { displayValue } = this.state
-    const newValue = parseFloat(displayValue) * -1
-    
-    this.setState({
-      displayValue: String(newValue)
-    })
-  }
-  
+
   inputDigit(digit) {
-    
+
     const { displayValue, waitingForOperand } = this.state
- 
+
     if (waitingForOperand) {
       this.setState({
         displayValue: String(digit),
@@ -60,56 +51,71 @@ class Calculator extends React.Component {
       })
     }
   }
-  
-  performOperation(nextOperator) {    
+
+  performOperation(nextOperator) {
     const { value, displayValue, operator } = this.state
 
-    const inputValue = romanToArabic(displayValue)   
-   
+    const inputValue = romanToArabic(displayValue)
+
     if (inputValue === false) {
- 
+
       alert("Please input a valid Roman Numeral")
 
       this.clearDisplay()
 
     }
 
-    else {
- 
-    const currentValue = romanToArabic(value) || 0 
-    
-    if (value == null) {
-      this.setState({
-        value: inputValue
-      })
-    } else if (operator) {
+    else if (inputValue < 1 || inputValue > 3999) {
 
-      const newValue = CalculatorOperations[operator](currentValue, inputValue)
-      
-      this.setState({
-        value: newValue,
-        displayValue: String(newValue)
-      })
+      alert("Please input a number between 1 and 3999 inclusive")
+
+      this.clearDisplay()
+
     }
-    
-    this.setState({
-      waitingForOperand: true,
-      operator: nextOperator
-    })
-  
-  }
+
+    else {
+
+      const currentValue = romanToArabic(value) || 0
+
+      if (value == null) {
+        this.setState({
+          value: inputValue
+        })
+      } else if (operator) {
+
+        const newValue = CalculatorOperations[operator](currentValue, inputValue)
+
+        if (newValue < 1 || newValue > 3999) {
+          alert("The results of your calculation are not between 1 and 3999 inclusive. Please try again")
+          this.clearAll()
+          return;
+        }
+
+        this.setState({
+          value: newValue,
+          displayValue: String(newValue)
+        })
+      }
+
+      this.setState({
+        waitingForOperand: true,
+        operator: nextOperator
+      })
+
+    }
 
   }
-  
+
   handleKeyDown = (event) => {
     let { key } = event
-    
+    let key_store = ['i', 'v', 'x', 'l', 'c', 'd', 'm']
+
     if (key === 'Enter')
       key = '='
-    
-    if ((/\d/).test(key)) {
+
+    if (key_store.includes(key)) {
       event.preventDefault()
-      this.inputDigit(parseInt(key, 10))
+      this.inputDigit(key.toUpperCase())
     } else if (key in CalculatorOperations) {
       event.preventDefault()
       this.performOperation(key)
@@ -118,7 +124,7 @@ class Calculator extends React.Component {
       this.clearLastChar()
     } else if (key === 'Clear') {
       event.preventDefault()
-      
+
       if (this.state.displayValue !== '') {
         this.clearDisplay()
       } else {
@@ -126,24 +132,24 @@ class Calculator extends React.Component {
       }
     }
   };
-  
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown)
   }
-  
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown)
   }
-  
+
   render() {
     const { displayValue } = this.state
-    
+
     const clearDisplay = displayValue !== ''
     const clearText = clearDisplay ? 'C' : 'AC'
-    
+
     return (
       <div className="calculator">
-        <CalculatorDisplay value={displayValue}/>
+        <CalculatorDisplay value={displayValue} />
         <div className="calculator-keypad">
           <div className="input-keys">
             <div className="function-keys">
@@ -161,6 +167,8 @@ class Calculator extends React.Component {
           </div>
           <div className="operator-keys">
             <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
+            <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
+            <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
             <CalculatorKey className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
           </div>
         </div>
@@ -171,4 +179,4 @@ class Calculator extends React.Component {
 
 export default Calculator
 
-  
+
