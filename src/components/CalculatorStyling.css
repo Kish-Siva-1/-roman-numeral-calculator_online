@@ -59,6 +59,12 @@ button:active {
   box-shadow: 0 0 0 #a1a1a1, 0 6px 10px rgba(0, 0, 0, .75);
 }
 
+.calculator-key:hover {
+    background-color:#000;
+    opacity:0.25;
+    color: white
+}
+
 .calculator-display {
   color: white;
   background: #1c191c;
