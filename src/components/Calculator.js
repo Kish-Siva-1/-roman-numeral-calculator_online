@@ -145,6 +145,7 @@ class Calculator extends React.Component {
 
     return (
       <div className="calculator">
+
         <CalculatorDisplay value={displayValue} />
         <div className="calculator-keypad">
           <div className="input-keys">
