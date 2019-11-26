@@ -21,6 +21,7 @@ Tested with:
 * The calculator performs calculations on numbers between 1 and 3999
 * The calculator doesn't permit negative numbers
 * The calculator performs addition, subtraction and multiplication
+* Uses a hover feature to highlight which button is active
 
 ## Installation
 
