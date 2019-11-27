@@ -3,9 +3,10 @@ import AutoScalingText from './AutoScalingText';
 import arabicToRoman from './ArabicToRoman';
 
 class CalculatorDisplay extends React.Component {
+  
   render() {
-    const { value, ...props } = this.props
 
+    const { value, ...props } = this.props
     let formattedValue = value
 
     if (Number.isInteger(parseInt(value, 10))) {
@@ -17,6 +18,7 @@ class CalculatorDisplay extends React.Component {
         <AutoScalingText>{formattedValue}</AutoScalingText>
       </div>
     )
+  
   }
 }
 

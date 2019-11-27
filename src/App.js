@@ -8,12 +8,15 @@ class App extends Component {
 
     return (
       <div>
+      
         <div id='heading' align="center" >
         <h1 style={{ color: 'white' }}>Roman Numeral Calculator</h1>
         </div>
+
         <div className="App" id='wrapper' >
           <Calculator />
         </div>
+      
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import CalculatorDisplay from './CalculatorDisplay';
 import CalculatorKey from './CalculatorKey';
 import CalculatorOperations from './CalculatorOperations'
-import './CalculatorStyling.css'
+import '../stylesheets/CalculatorStyling.css'
 import romanToArabic from './RomanToArabic';
 
 class Calculator extends React.Component {
@@ -22,12 +22,14 @@ class Calculator extends React.Component {
     })
   }
 
+  //will clear the values displayed on the calculator
   clearDisplay() {
     this.setState({
       displayValue: ''
     })
   }
 
+  //will remove the last character entered
   clearLastChar() {
     const { displayValue } = this.state
 
@@ -36,6 +38,7 @@ class Calculator extends React.Component {
     })
   }
 
+  //will input the digit the user has entered 
   inputDigit(digit) {
 
     const { displayValue, waitingForOperand } = this.state
@@ -46,37 +49,32 @@ class Calculator extends React.Component {
         waitingForOperand: false
       })
     } else {
+    
+      // concatenates input e.g. I + I = II
       this.setState({
         displayValue: displayValue === '' ? String(digit) : displayValue + digit
       })
     }
   }
 
+  //will perform an equal, +, - or * function as well as validation
   performOperation(nextOperator) {
-    const { value, displayValue, operator } = this.state
 
+    const { value, displayValue, operator } = this.state
     const inputValue = romanToArabic(displayValue)
 
     if (inputValue === false) {
-
       alert("Please input a valid Roman Numeral")
-
       this.clearDisplay()
-
     }
 
     else if (inputValue < 1 || inputValue > 3999) {
-
       alert("Please input a number between 1 and 3999 inclusive")
-
       this.clearDisplay()
-
     }
 
     else {
-
       const currentValue = romanToArabic(value) || 0
-
       if (value == null) {
         this.setState({
           value: inputValue
@@ -101,12 +99,11 @@ class Calculator extends React.Component {
         waitingForOperand: true,
         operator: nextOperator
       })
-
     }
-
   }
 
   handleKeyDown = (event) => {
+    
     let { key } = event
     let key_store = ['i', 'v', 'x', 'l', 'c', 'd', 'm']
 
@@ -130,6 +127,7 @@ class Calculator extends React.Component {
       } else {
         this.clearAll()
       }
+
     }
   };
 
@@ -138,20 +136,22 @@ class Calculator extends React.Component {
   }
 
   render() {
-    const { displayValue } = this.state
 
+    const { displayValue } = this.state
     const clearDisplay = displayValue !== ''
     const clearText = clearDisplay ? 'C' : 'AC'
 
     return (
       <div className="calculator">
-
         <CalculatorDisplay value={displayValue} />
         <div className="calculator-keypad">
+          
           <div className="input-keys">
+          
             <div className="function-keys">
               <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
             </div>
+          
             <div className="digit-keys">
               <CalculatorKey className="key-1" onPress={() => this.inputDigit('I')}>I</CalculatorKey>
               <CalculatorKey className="key-2" onPress={() => this.inputDigit('V')}>V</CalculatorKey>
@@ -161,13 +161,16 @@ class Calculator extends React.Component {
               <CalculatorKey className="key-6" onPress={() => this.inputDigit('D')}>D</CalculatorKey>
               <CalculatorKey className="key-7" onPress={() => this.inputDigit('M')}>M</CalculatorKey>
             </div>
+          
           </div>
+        
           <div className="operator-keys">
             <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
             <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
             <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
             <CalculatorKey className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
           </div>
+        
         </div>
       </div>
     )

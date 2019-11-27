@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-import Calculator from './components/Calculator';
+import Calculator from '../components/Calculator';
 import Adapter from "enzyme-adapter-react-16"
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -16,7 +16,7 @@ describe("Calculator", () => {
       
         });
 
-        it('tests that an input of II one after the other displays II', () => {
+        it('tests that an input of I twice, one after the other displays II', () => {
 
             const wrapper = mount(<Calculator />);
             wrapper.instance().inputDigit('I')
@@ -62,7 +62,7 @@ describe("Calculator", () => {
 
     describe('Will test whether roman numeral laws are obeyed', () => {
 
-        it('tests that digits V, D and L can not be repeated', () => {
+        it('tests that digits V, D and L can not be repeated (uses D as an example)', () => {
 
             window.alert = jest.fn();
             
@@ -74,7 +74,7 @@ describe("Calculator", () => {
             
         });
 
-        it('tests that I, X or C can not repeat more than 3 times', () => {
+        it('tests that I, X or C can not repeat more than 3 times (uses C as an example)', () => {
 
             window.alert = jest.fn();
             
@@ -86,7 +86,7 @@ describe("Calculator", () => {
             
         });
 
-        it('no digit can be concatenated more than thrice', () => {
+        it('no digit can be concatenated more than thrice (uses M as an example)', () => {
     
             window.alert = jest.fn();
             
@@ -98,7 +98,7 @@ describe("Calculator", () => {
             
         });
 
-        it('V is never written to the left of X', () => {
+        it('V is never allowed to be written to the left of X', () => {
       
             window.alert = jest.fn();
             

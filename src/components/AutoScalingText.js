@@ -1,16 +1,15 @@
 import React from 'react';
 
 class AutoScalingText extends React.Component {
+  
   state = {
     scale: 1
   };
 
   componentDidUpdate() {
     const { scale } = this.state
-
     const node = this.node
     const parentNode = node.parentNode
-
     const availableWidth = parentNode.offsetWidth
     const actualWidth = node.offsetWidth
     const actualScale = availableWidth / actualWidth
@@ -27,6 +26,7 @@ class AutoScalingText extends React.Component {
 
   render() {
     const { scale } = this.state
+    
     return (
       <div
         className="auto-scaling-text"
@@ -34,6 +34,7 @@ class AutoScalingText extends React.Component {
         ref={node => this.node = node}
       >{this.props.children}</div>
     )
+    
   }
 }
 
