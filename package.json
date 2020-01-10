@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "react-point": "^3.0.1",
+    "firebase": "^7.6.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-mdl": "^1.11.0",
+    "react-point": "^3.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2"
   },
@@ -15,7 +16,8 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "test:coverage": "jest --coverage --colors",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
